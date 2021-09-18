@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.GameWindowController">
+  <children>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+      <children>
+            <TitledPane animated="false" layoutX="14.0" layoutY="14.0" prefHeight="215.0" prefWidth="114.0" text="Dice" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="134.0">
+                     <children>
+                        <Button fx:id="btn_d2" layoutX="14.0" layoutY="1.0" mnemonicParsing="false" onAction="#rollDice" text="d2" />
+                        <Button fx:id="btn_d4" layoutX="14.0" layoutY="27.0" mnemonicParsing="false" onAction="#rollDice" text="d4" />
+                        <Button fx:id="btn_d6" layoutX="14.0" layoutY="53.0" mnemonicParsing="false" onAction="#rollDice" text="d6" />
+                        <Button fx:id="btn_d8" layoutX="14.0" layoutY="79.0" mnemonicParsing="false" onAction="#rollDice" text="d8" />
+                        <Button fx:id="btn_d10" layoutX="14.0" layoutY="105.0" mnemonicParsing="false" onAction="#rollDice" text="d10" />
+                        <Button fx:id="btn_d12" layoutX="14.0" layoutY="131.0" mnemonicParsing="false" onAction="#rollDice" text="d12" />
+                        <Button fx:id="btn_d20" layoutX="14.0" layoutY="157.0" mnemonicParsing="false" onAction="#rollDice" text="d20" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </TitledPane>
+            <TitledPane animated="false" layoutX="459.0" layoutY="14.0" prefHeight="372.0" prefWidth="166.0" text="Game Log" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextArea fx:id="textArea_gameLog" editable="false" layoutX="24.6" layoutY="16.6" prefHeight="777.0" prefWidth="480.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </TitledPane>
+            <TextArea fx:id="textArea_name" layoutX="14.0" layoutY="351.0" prefHeight="39.0" prefWidth="91.0" promptText="Name" AnchorPane.bottomAnchor="10.600000000000009" AnchorPane.leftAnchor="14.0" />
+            <Button layoutX="104.0" layoutY="352.0" mnemonicParsing="false" onAction="#updateName" prefHeight="32.0" prefWidth="79.0" text="Update" AnchorPane.bottomAnchor="16.80000000000001" AnchorPane.leftAnchor="104.0" />
+      </children>
+    </AnchorPane>
+  </children>
+</VBox>
