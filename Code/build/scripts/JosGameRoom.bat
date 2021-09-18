@@ -71,7 +71,7 @@ set CLASSPATH=%APP_HOME%\lib\JosGameRoom-1.0-SNAPSHOT.jar;%APP_HOME%\lib\javafx-
 
 
 @rem Execute JosGameRoom
-"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %JOS_GAME_ROOM_OPTS%  -classpath "%CLASSPATH%"  %*
+"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %JOS_GAME_ROOM_OPTS%  -classpath "%CLASSPATH%" main.Main %*
 
 :end
 @rem End local scope for the variables with windows NT shell

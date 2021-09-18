@@ -1,2 +1,5 @@
 rootProject.name = 'JosGameRoom'
+include ':Server'
+include ':Client'
+include ':Utilities'
 
