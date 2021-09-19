@@ -1,3 +1,11 @@
+messageHandlers/LoginMessageHandler.java
+ messageHandlers.LoginMessageHandler
 main/Server.java
  main.Server
  main.Server$ClientHandler
+main/ServerMessageHandler.java
+ main.ServerMessageHandler
+messageHandlers/DiceRollMessageHandler.java
+ messageHandlers.DiceRollMessageHandler
+messageHandlers/BaseMessageHandler.java
+ messageHandlers.BaseMessageHandler

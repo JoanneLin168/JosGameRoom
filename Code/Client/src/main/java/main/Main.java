@@ -1,15 +1,15 @@
 package main;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.concurrent.Task;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class Main extends Application {
     private Client client;
+    private ClientMessageHandler messageHandler;
+    private IncomingMessageHandler incomingMessageHandler;
 
     private void connectToServer() throws IOException {
         client = new Client();
@@ -20,11 +20,16 @@ public class Main extends Application {
     public void start(Stage stage) throws IOException {
         connectToServer();
 
-        Parent root = FXMLLoader.load(getClass().getResource("/gameWindow.fxml"));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.setMaximized(true);
-        stage.show();
+        StageManager.getInstance().setup(stage, client);
+        StageManager.getInstance().changeToLoginWindowScene();
+
+        messageHandler = new ClientMessageHandler(client);
+        incomingMessageHandler = new IncomingMessageHandler(client, messageHandler);
+
+        // TODO: make StageManager stuff work (can't do JFX stuff on a non JFX thread)
+//        Thread incomingMessagesThread = new Thread(incomingMessageHandler);
+//        incomingMessagesThread.start();
+
     }
 
     @Override

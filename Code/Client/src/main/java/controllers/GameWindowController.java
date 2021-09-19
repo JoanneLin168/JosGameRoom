@@ -5,16 +5,18 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
+import main.Client;
+import main.PacketType;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class GameWindowController implements Initializable {
 
-    private String name = "anonymous";
+    private String name;
+    private Client client;
 
     @FXML private Button btn_d2;
     @FXML private Button btn_d4;
@@ -24,25 +26,21 @@ public class GameWindowController implements Initializable {
     @FXML private Button btn_d12;
     @FXML private Button btn_d20;
     @FXML private TextArea textArea_gameLog;
-    @FXML private TextArea textArea_name;
+
+    public GameWindowController(Client client) {
+        this.name = "anonymous"; // need to pass in name *after* log in screen
+        this.client = client;
+    }
 
     @FXML
-    public void rollDice(ActionEvent event) {
+    public void rollDice(ActionEvent event) throws IOException {
         int dice = Integer.parseInt(((Button) event.getSource()).getText().substring(1));
         int roll = ThreadLocalRandom.current().nextInt(1, dice+1);
 
-//        String logText = textArea_gameLog_gameLog.getText() + Integer.toString(roll) + "\n";
-//        textArea_gameLog.setText(logText);
-
-        // TODO: Find a better autoscroll method
-        textArea_gameLog.appendText(name + " rolled: " + Integer.toString(roll) + "\n");
+        client.sendMessage(PacketType.DICE_ROLL+":"+roll);
 
     }
 
-    @FXML
-    public void updateName(ActionEvent event) {
-        name = textArea_name.getText();
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

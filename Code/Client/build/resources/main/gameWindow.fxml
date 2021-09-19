@@ -38,7 +38,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.GameWindowController">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <children>
@@ -66,8 +66,6 @@
                   </AnchorPane>
               </content>
             </TitledPane>
-            <TextArea fx:id="textArea_name" layoutX="14.0" layoutY="351.0" prefHeight="39.0" prefWidth="91.0" promptText="Name" AnchorPane.bottomAnchor="10.600000000000009" AnchorPane.leftAnchor="14.0" />
-            <Button layoutX="104.0" layoutY="352.0" mnemonicParsing="false" onAction="#updateName" prefHeight="32.0" prefWidth="79.0" text="Update" AnchorPane.bottomAnchor="16.80000000000001" AnchorPane.leftAnchor="104.0" />
       </children>
     </AnchorPane>
   </children>

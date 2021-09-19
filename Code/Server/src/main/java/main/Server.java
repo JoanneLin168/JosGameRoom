@@ -8,7 +8,8 @@ import java.util.Map;
 public class Server {
     private ServerSocket serverSocket;
     protected Map<Integer, ClientHandler> clientHandlers = new HashMap<>();
-    private int nextId = 0;
+    private int nextId = 1; // number 0 is for server
+    private final ServerMessageHandler messageHandler = new ServerMessageHandler();
 
     public void start(int port) throws IOException {
         serverSocket = new ServerSocket(port);
@@ -28,20 +29,28 @@ public class Server {
         serverSocket.close();
     }
 
-    public void removeHandler(int id) {
+    public void removeClientHandler(int id) {
         clientHandlers.remove(id);
         System.out.println("Client "+id+" has disconnected");
     }
 
     private class ClientHandler extends Thread {
-        private Socket clientSocket;
-        private int id;
+        private final Socket clientSocket;
+        private final int id;
         private PrintWriter out;
         private BufferedReader in;
 
         public ClientHandler(Socket socket, int id) {
             this.clientSocket = socket;
             this.id = id;
+        }
+
+        public PrintWriter getOut() {
+            return out;
+        }
+
+        public BufferedReader getIn() {
+            return in;
         }
 
         public void run() {
@@ -53,19 +62,16 @@ public class Server {
                 e.printStackTrace();
             }
 
+            // need to add the IOPair here if not, out and in is null
+            messageHandler.addClientIOPair(nextId, new IOPair(out, in));
+
             String inputLine;
             while (true) {
                 try {
                     if ((inputLine = in.readLine()) == null) break; // when a user disconnects
-                    if (inputLine.equals(".")) {
-                        out.println("bye");
-                        break;
-                    }
-                    else if (inputLine.equals("hello server")) {
-                        out.println("hello client "+this.id);
-                    }
                     else {
-                        out.println(inputLine);
+                        // let the messageHandler deal with the message
+                        messageHandler.handleMessage(inputLine, id, true);
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -76,7 +82,7 @@ public class Server {
                 in.close();
                 out.close();
                 clientSocket.close();
-                removeHandler(this.id);
+                removeClientHandler(this.id);
             } catch (IOException e) {
                 e.printStackTrace();
             }
